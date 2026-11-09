@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Printo</title>
+    <link rel="icon" type="image/x-icon" href="../lib/doro-favicon/favicon.ico">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        html,body{
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding-top: 40px;
+        }
+
+        .handclap{
+            width: 140px;
+        }
+
+        #github{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: black;
+            text-decoration: none;
+            width: max-content;
+        }
+        
+        .github_Logo{
+            width: 32px;
+            height: auto;
+        }
+
+        h1{
+            font-family: "Source Han Sans CN", sans-serif;
+            text-align: center;
+            font-weight: 400;
+            margin: 0;
+        }
+
+        #toUse{
+            background-color: #F8D7DD;
+            width: 300px;
+            height: 50px;
+            border: none;
+            border-radius: 999px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #toUse:hover {
+            background-color: #F2BECB;
+        }
+
+        #donate{
+            border: 0 none;
+            background-color: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* 遮罩层 */
+        .mask {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+        /* 弹窗盒子 */
+        .modal {
+            width: 300px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+    </style>
+</head>
+<body>
+    <h1>欢迎使用PrintO</h1>
+    <img src="../img/鼓掌.gif" alt="欢迎图片" class="handclap">
+    
+    <a href="#" id="github">
+        <img src="../img/github-logo-icon-free-vector.webp" alt="github的LOGO" class="github_Logo">
+        <span>由Blair开发并开源，喜欢就去GitHub给个⭐吧~</span>
+    </a>
+
+    <button id="toUse">开始使用</button>
+    <button id="donate">打赏</button>
+
+    <!-- 弹窗 -->
+    <!-- <div class="mask" id="mask">
+        <div class="modal">
+            <h3>弹窗标题</h3>
+            <p>弹窗内容文字</p>
+            <button id="closeBtn">关闭</button>
+        </div>
+    </div> -->
+</body>
+<script>
+    const useBtn=document.getElementById('toUse');
+    useBtn.onclick = function(){
+        window.location.href='./main.html'
+    }
+    // const mask = document.getElementById('mask');
+    // const closeBtn = document.getElementById('closeBtn');
+
+    // 打开弹窗
+    // openBtn.onclick = function(){
+    //   mask.style.display = 'block';
+    // }
+    // // 关闭弹窗
+    // closeBtn.onclick = function(){
+    //   mask.style.display = 'none';
+    // }
+
+    const donateBtn = document.getElementById('donate');
+    const gotoGitHub=document.getElementById('github')
+    window.addEventListener('pywebviewready', () => {
+        const api = window.pywebview.api;
+        //打开打赏页面
+        donateBtn.onclick = async() => {
+            await api.create_donate_window()
+        }
+        //打开gitHub仓库页面
+        gotoGitHub.onclick = async() => {
+            await api.create_new_window('PrintO仓库','https://github.com/BlairPL/PrintO',true)
+        }
+
+
+
+
+    })
+
+    
+
+
+
+
+
+
+
+
+
+</script>
+</html>

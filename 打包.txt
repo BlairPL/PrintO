@@ -1,0 +1,2 @@
+cd D:\Blair.PENG\dev\PrintO\PrintO
+pyinstaller -D -w --name "PrintO" -i "D:\Blair.PENG\dev\auto-doing\auto-job\Printo\client\ico\favicon.ico" --add-data "web;web" --add-data "client/ico;ico" client/main.py
